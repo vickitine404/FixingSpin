@@ -13,10 +13,21 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
     public static final double stickDeadband = 0.2;
     
+    public static final class LEDS{
+        
+    }
+
     public static final class Elevator{
         public static final int leftElevator = 18;
         public static final int rightElevator = 19;
 
+    }
+
+    public static final class Tank{
+        public static final int frontRight = 2;
+        public static final int frontLeft = 5;
+        public static final int backRight = 10;
+        public static final int backLeft = 6;
     }
 
     public static final class Swerve {
@@ -86,9 +97,9 @@ public final class Constants {
 
         /* Swerve Profiling Values */
         /** Meters per Second */
-        public static final double maxSpeed = 4.5; //later
+        public static final double maxSpeed = 4.5; //change later
         /** Radians per Second */
-        public static final double maxAngularVelocity = 10.0; //later
+        public static final double maxAngularVelocity = 10.0; //change later
 
         /* Neutral Modes */
         public static final NeutralMode angleNeutralMode = NeutralMode.Coast;
@@ -137,8 +148,8 @@ public final class Constants {
     }
 
     public static final class AutoConstants { //later auto
-        public static final double kMaxSpeedMetersPerSecond = 3;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+        public static final double kMaxSpeedMetersPerSecond = 1;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
     

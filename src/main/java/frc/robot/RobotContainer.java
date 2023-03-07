@@ -25,21 +25,25 @@ public class RobotContainer {
     
     private final Joystick leftStick = new Joystick(0);
     private final Joystick rightStick = new Joystick(1);
+    private final Joystick soloStick = new Joystick(3);
     
     /* Drive Controls */
     private final int translationAxis = Joystick.AxisType.kY.value;
     private final int strafeAxis = Joystick.AxisType.kX.value;
     private final int rotationAxis = Joystick.AxisType.kX.value; //right
+    
+    //private final int leftTankAxis = Joystick.AxisType.kY.value;
+    //private final int rightTankAxis = Joystick.AxisType.kThrottle.value;
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(leftStick, 1);
     private final JoystickButton robotCentric  = new JoystickButton(leftStick, 5);
+    //private final JoystickButton toggleDriveMode = new JoystickButton(rightStick, 2);
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
-    private final Elevator s_Elevator = new Elevator(new WPI_TalonFX(Constants.Elevator.leftElevator), new WPI_TalonFX(Constants.Elevator.rightElevator), 8, 9);
-
-
+    private final Elevator s_Elevator = new Elevator(new WPI_TalonFX(Constants.Elevator.leftElevator), new WPI_TalonFX(Constants.Elevator.rightElevator), 8, 9,7);
+    //private final Tank s_Tank = new Tank(new WPI_TalonFX(Constants.Tank.frontLeft), new WPI_TalonFX(Constants.Tank.frontRight), new WPI_TalonFX(Constants.Tank.backLeft), new WPI_TalonFX(Constants.Tank.backRight));
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -54,7 +58,7 @@ public class RobotContainer {
         );
 
         s_Elevator.setDefaultCommand(
-            new TeleopElevator(s_Elevator, leftStick)
+            new TeleopElevator(s_Elevator, soloStick)
         );
         
         // Configure the button bindings

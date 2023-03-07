@@ -18,12 +18,12 @@ public class TeleopElevator extends CommandBase {
     @Override
     public void initialize() {
     }
-
+    //7 down
     @Override
     public void execute() {
-        if (joystick.getRawButton(7)) {
+        if (joystick.getRawButton(3)) {
             subsystem.setMotors(.3);
-        } else if (joystick.getRawButton(9)) {
+        } else if (joystick.getRawButton(5)) {
             subsystem.setMotors(-.3); 
         } else {
             subsystem.setMotors(0);
