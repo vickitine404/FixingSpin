@@ -7,6 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
+import com.ctre.phoenix.sensors.Pigeon2;
+import com.ctre.phoenix.sensors.PigeonIMU;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -86,6 +90,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    Pigeon2 pigeon = new Pigeon2(17); 
     // Get Limelight Specific data from the NetworkTable, convert its values into NetworkTableEntry
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx"), ty = table.getEntry("ty"), ta = table.getEntry("ta"), tv = table.getEntry("tv");
@@ -96,9 +101,12 @@ public class Robot extends TimedRobot {
     double area = ta.getDouble(0.0);
 
     // Send data to the SmartDashboard - We have found this VERY useful for debugging.
+    
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
+    SmartDashboard.putNumber("roll", pigeon.getRoll());// prints the roll of the Pigeon
+    
   }
 
   /** This function is called periodically during operator control. */

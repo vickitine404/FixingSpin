@@ -1,15 +1,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Grippers;
 import edu.wpi.first.wpilibj.Joystick;
 
-public class TeleopElevator extends CommandBase {
+public class TeleopGrippers extends CommandBase {
 
-    private final Elevator subsystem;
+    private final Grippers subsystem;
     private final Joystick joystick;
 
-    public TeleopElevator(Elevator subsystem, Joystick joystick) {
+    public TeleopGrippers(Grippers subsystem, Joystick joystick) {
         this.subsystem = subsystem;
         this.joystick = joystick;
         addRequirements(subsystem);
@@ -21,15 +21,13 @@ public class TeleopElevator extends CommandBase {
     //7 down
     @Override
     public void execute() {
-        // && subsystem.isTopLimitSwitchTriggered == false
-        if (joystick.getRawButton(3) ) {
+        if (joystick.getRawButton(7)) {
             subsystem.setMotors(.3);
-        } else if (joystick.getRawButton(5)) {
+        } else if (joystick.getRawButton(9)) {
             subsystem.setMotors(-.3); 
         } else {
             subsystem.setMotors(0);
         }
-
     }
 
     @Override

@@ -42,7 +42,10 @@ public class RobotContainer {
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
-    private final Elevator s_Elevator = new Elevator(new WPI_TalonFX(Constants.Elevator.leftElevator), new WPI_TalonFX(Constants.Elevator.rightElevator), 8, 9,7);
+    private final Elevator s_Elevator = new Elevator(new WPI_TalonFX(Constants.Elevator.leftElevator), new WPI_TalonFX(Constants.Elevator.rightElevator), 8, 9,1);
+    private final Arm s_Arm = new Arm(new WPI_TalonFX(Constants.Arm.armMotor));
+    private final Grippers s_Grippers = new Grippers(new WPI_TalonFX(Constants.Grippers.leftGripper), new WPI_TalonFX(Constants.Grippers.rightGripper));
+    private final Pneumatics s_Pneumatics = new Pneumatics();
     //private final Tank s_Tank = new Tank(new WPI_TalonFX(Constants.Tank.frontLeft), new WPI_TalonFX(Constants.Tank.frontRight), new WPI_TalonFX(Constants.Tank.backLeft), new WPI_TalonFX(Constants.Tank.backRight));
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -50,8 +53,8 @@ public class RobotContainer {
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
                 s_Swerve, 
-                () -> leftStick.getRawAxis(translationAxis), 
-                () -> leftStick.getRawAxis(strafeAxis), 
+                () -> -leftStick.getRawAxis(translationAxis), 
+                () -> -leftStick.getRawAxis(strafeAxis), 
                 () -> rightStick.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean()
             )
@@ -60,7 +63,18 @@ public class RobotContainer {
         s_Elevator.setDefaultCommand(
             new TeleopElevator(s_Elevator, soloStick)
         );
+
+        s_Arm.setDefaultCommand(
+            new TeleopArm(s_Arm, soloStick)
+        );
+
+        s_Grippers.setDefaultCommand(
+            new TeleopGrippers(s_Grippers, soloStick)
+        );
         
+        s_Pneumatics.setDefaultCommand(
+            new TeleopPneumatics(s_Pneumatics, soloStick)
+        );
         // Configure the button bindings
         configureButtonBindings();
     }
