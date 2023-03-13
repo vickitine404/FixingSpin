@@ -42,8 +42,8 @@ public class RobotContainer {
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
-    private final Elevator s_Elevator = new Elevator(new WPI_TalonFX(Constants.Elevator.leftElevator), new WPI_TalonFX(Constants.Elevator.rightElevator), 8, 9,1);
-    private final Arm s_Arm = new Arm(new WPI_TalonFX(Constants.Arm.armMotor));
+    private final Elevator s_Elevator = new Elevator(new WPI_TalonFX(Constants.Elevator.leftElevator), new WPI_TalonFX(Constants.Elevator.rightElevator), 8, 9, 7);
+    private final Arm s_Arm = new Arm(new WPI_TalonFX(Constants.Arm.armMotor), 6);
     private final Grippers s_Grippers = new Grippers(new WPI_TalonFX(Constants.Grippers.leftGripper), new WPI_TalonFX(Constants.Grippers.rightGripper));
     private final Pneumatics s_Pneumatics = new Pneumatics();
     //private final Tank s_Tank = new Tank(new WPI_TalonFX(Constants.Tank.frontLeft), new WPI_TalonFX(Constants.Tank.frontRight), new WPI_TalonFX(Constants.Tank.backLeft), new WPI_TalonFX(Constants.Tank.backRight));
@@ -55,7 +55,7 @@ public class RobotContainer {
                 s_Swerve, 
                 () -> -leftStick.getRawAxis(translationAxis), 
                 () -> -leftStick.getRawAxis(strafeAxis), 
-                () -> rightStick.getRawAxis(rotationAxis), 
+                () -> -rightStick.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean()
             )
         );
@@ -73,7 +73,7 @@ public class RobotContainer {
         );
         
         s_Pneumatics.setDefaultCommand(
-            new TeleopPneumatics(s_Pneumatics, soloStick)
+            new TeleopPneumatics(s_Pneumatics, leftStick)
         );
         // Configure the button bindings
         configureButtonBindings();

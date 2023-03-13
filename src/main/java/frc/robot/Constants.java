@@ -9,6 +9,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.lib.util.COTSFalconSwerveConstants;
 import frc.lib.util.SwerveModuleConstants;
@@ -21,25 +22,24 @@ public final class Constants {
     }
     public static final class Pneumatics{
         public static final  Compressor air = new Compressor(1, PneumaticsModuleType.REVPH);
+        public static final DoubleSolenoid clawTilt = new DoubleSolenoid(1,PneumaticsModuleType.REVPH, 4, 5);
+        public static final DoubleSolenoid clawClamp = new DoubleSolenoid(1,PneumaticsModuleType.REVPH, 6, 7);
 
 
     }
 
     public static final class Arm{
-        public static final int armMotor = 21;
+        public static final int armMotor = 22;
         
     }
 
     public static final class Elevator{
         public static final int leftElevator = 18;
         public static final int rightElevator = 19;
-        public static final int limitSensorTop = 0;
-        
-
     }
     public static final class Grippers{
-        public static final int leftGripper = 23;
-        public static final int rightGripper = 24;
+        public static final int leftGripper = 24;
+        public static final int rightGripper = 23;
     }
 
     public static final class Tank{

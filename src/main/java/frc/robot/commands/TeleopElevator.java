@@ -18,13 +18,14 @@ public class TeleopElevator extends CommandBase {
     @Override
     public void initialize() {
     }
-    //7 down
+    //-5000
+    //1091
     @Override
     public void execute() {
         // && subsystem.isTopLimitSwitchTriggered == false
-        if (joystick.getRawButton(3) ) {
+        if (joystick.getRawButton(3) && subsystem.bottomLimit > -3000) {
             subsystem.setMotors(.3);
-        } else if (joystick.getRawButton(5)) {
+        } else if (joystick.getRawButton(5) && subsystem.isTopLimitSwitchTriggered == true) {
             subsystem.setMotors(-.3); 
         } else {
             subsystem.setMotors(0);

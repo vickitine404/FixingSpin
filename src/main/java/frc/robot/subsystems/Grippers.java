@@ -18,7 +18,7 @@ public class Grippers extends SubsystemBase {
     public void setMotors(double speed) {
         masterMotor.set(TalonFXControlMode.PercentOutput, speed);
         followerMotor.follow(masterMotor);
-        followerMotor.setInverted(InvertType.FollowMaster);
+        followerMotor.setInverted(InvertType.OpposeMaster);
     }
 
 }

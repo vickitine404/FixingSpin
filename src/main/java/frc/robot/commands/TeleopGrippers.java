@@ -21,10 +21,10 @@ public class TeleopGrippers extends CommandBase {
     //7 down
     @Override
     public void execute() {
-        if (joystick.getRawButton(7)) {
-            subsystem.setMotors(.3);
-        } else if (joystick.getRawButton(9)) {
-            subsystem.setMotors(-.3); 
+        if (joystick.getRawButton(2)) {
+            subsystem.setMotors(0.4);
+        } else if (joystick.getRawButton(1)) {
+            subsystem.setMotors(-0.4); 
         } else {
             subsystem.setMotors(0);
         }
