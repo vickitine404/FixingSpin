@@ -32,8 +32,8 @@ public class TeleopPneumatics extends CommandBase {
             Constants.Pneumatics.clawClamp.toggle();
         } else if (joystick.getRawButtonPressed(3)) {
             //Constants.Pneumatics.clawTilt.toggle();
-            if (toggle) Constants.Pneumatics.clawTilt.set(DoubleSolenoid.Value.kOff);
-            else Constants.Pneumatics.clawTilt.set(DoubleSolenoid.Value.kReverse);
+            Constants.Pneumatics.clawTilt.toggle();
+            
         } 
     }
 

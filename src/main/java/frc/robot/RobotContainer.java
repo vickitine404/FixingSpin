@@ -37,16 +37,16 @@ public class RobotContainer {
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(leftStick, 1);
-    private final JoystickButton robotCentric  = new JoystickButton(leftStick, 5);
+    private final JoystickButton robotCentric  = new JoystickButton(leftStick, 12);
     //private final JoystickButton toggleDriveMode = new JoystickButton(rightStick, 2);
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
     private final Elevator s_Elevator = new Elevator(new WPI_TalonFX(Constants.Elevator.leftElevator), new WPI_TalonFX(Constants.Elevator.rightElevator), 8, 9, 7);
-    private final Arm s_Arm = new Arm(new WPI_TalonFX(Constants.Arm.armMotor), 6);
+    private final Arm s_Arm = new Arm(new WPI_TalonFX(Constants.Arm.armMotor), 6, 5, 4); 
     private final Grippers s_Grippers = new Grippers(new WPI_TalonFX(Constants.Grippers.leftGripper), new WPI_TalonFX(Constants.Grippers.rightGripper));
     private final Pneumatics s_Pneumatics = new Pneumatics();
-    //private final Tank s_Tank = new Tank(new WPI_TalonFX(Constants.Tank.frontLeft), new WPI_TalonFX(Constants.Tank.frontRight), new WPI_TalonFX(Constants.Tank.backLeft), new WPI_TalonFX(Constants.Tank.backRight));
+    private final Tank s_Tank = new Tank(new WPI_TalonFX(Constants.Tank.frontLeft), new WPI_TalonFX(Constants.Tank.frontRight), new WPI_TalonFX(Constants.Tank.backLeft), new WPI_TalonFX(Constants.Tank.backRight));
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -95,8 +95,15 @@ public class RobotContainer {
      *
      * @return the command to run in autonomous
      */
+    public boolean run = true;
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new exampleAuto(s_Swerve);
+        if (run) {
+            this.run = false;
+            return new autoExtendsComandbase(s_Elevator, s_Arm, s_Tank, s_Pneumatics);
+        }
+
+        return null;
+
     }
 }

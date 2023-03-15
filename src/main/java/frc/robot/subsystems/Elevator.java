@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 //import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -33,6 +34,8 @@ public class Elevator extends SubsystemBase {
         this.followerMotor = followerMotor;
         this.encoder = new Encoder(channelA, channelB);
         this.limitSensor = new DigitalInput(limitChannel);
+        masterMotor.setNeutralMode(NeutralMode.Brake);
+        followerMotor.setNeutralMode(NeutralMode.Brake);
 
         bottomLimit = encoder.get();
     }

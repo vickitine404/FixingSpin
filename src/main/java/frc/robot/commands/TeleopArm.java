@@ -20,12 +20,12 @@ public class TeleopArm extends CommandBase {
     }
     @Override
     public void execute() {
-        //out              && subsystem.armEncoder.get() <= 11000
-        if (joystick.getRawButton(6)) {
+        //out                 
+        if (joystick.getRawButton(6) && subsystem.armEncoder.get() <= 14000) {
             subsystem.setMotors(.5);
-            //in
-        } else if (joystick.getRawButton(4) ) {
-            subsystem.setMotors(-.15); 
+            //in   && Arm.isArmTriggered == false
+        } else if (joystick.getRawButton(4) && subsystem.isArmTriggered == true) {
+            subsystem.setMotors(-.4); 
         } else {
             subsystem.setMotors(0);
         }
