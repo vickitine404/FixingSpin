@@ -100,7 +100,7 @@ public class RobotContainer {
         // An ExampleCommand will run in autonomous
         if (run) {
             this.run = false;
-            return new autoExtendsComandbase(s_Elevator, s_Arm, s_Tank, s_Pneumatics);
+            return new realAuto(s_Elevator, s_Arm, s_Tank, s_Pneumatics);
         }
 
         return null;
