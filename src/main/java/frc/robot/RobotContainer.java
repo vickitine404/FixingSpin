@@ -47,6 +47,7 @@ public class RobotContainer {
     private final Grippers s_Grippers = new Grippers(new WPI_TalonFX(Constants.Grippers.leftGripper), new WPI_TalonFX(Constants.Grippers.rightGripper));
     private final Pneumatics s_Pneumatics = new Pneumatics();
     private final Tank s_Tank = new Tank(new WPI_TalonFX(Constants.Tank.frontLeft), new WPI_TalonFX(Constants.Tank.frontRight), new WPI_TalonFX(Constants.Tank.backLeft), new WPI_TalonFX(Constants.Tank.backRight));
+    private final LED s_LED = new LED();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -75,6 +76,10 @@ public class RobotContainer {
         s_Pneumatics.setDefaultCommand(
             new TeleopPneumatics(s_Pneumatics, leftStick)
         );
+        s_LED.setDefaultCommand(
+            new TeleopLED(s_LED, soloStick)
+        );
+        
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -100,7 +105,7 @@ public class RobotContainer {
         // An ExampleCommand will run in autonomous
         if (run) {
             this.run = false;
-            return new realAuto(s_Elevator, s_Arm, s_Tank, s_Pneumatics);
+            return new realAuto(s_Elevator, s_Arm, s_Swerve, s_Pneumatics, s_Grippers);
         }
 
         return null;

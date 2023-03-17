@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     ctreConfigs = new CTREConfigs();
+    Constants.Pneumatics.init();
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
@@ -111,7 +112,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    
+  }
 
   @Override
   public void testInit() {

@@ -8,6 +8,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -17,14 +18,16 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
     public static final double stickDeadband = 0.08;
     
-    public static final class LEDS{
-        
-    }
     public static final class Pneumatics{
-        public static final  Compressor air = new Compressor(1, PneumaticsModuleType.REVPH);
-        public static final DoubleSolenoid clawTilt = new DoubleSolenoid(1,PneumaticsModuleType.REVPH, 4, 5);
-        public static final DoubleSolenoid clawClamp = new DoubleSolenoid(1,PneumaticsModuleType.REVPH, 6, 7);
-
+        public static Compressor air;
+        public static DoubleSolenoid clawTilt;
+        public static DoubleSolenoid clawClamp; 
+    
+        public static void init() {
+            air = new Compressor(1, PneumaticsModuleType.REVPH);
+            clawTilt = new DoubleSolenoid(1,PneumaticsModuleType.REVPH, 4, 5);
+            clawClamp = new DoubleSolenoid(1,PneumaticsModuleType.REVPH, 6, 7);
+        }
 
     }
 

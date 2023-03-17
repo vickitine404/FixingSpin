@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Pneumatics;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class TeleopPneumatics extends CommandBase {
@@ -20,14 +21,18 @@ public class TeleopPneumatics extends CommandBase {
 
     @Override
     public void initialize() {
-        Constants.Pneumatics.clawClamp.set(DoubleSolenoid.Value.kForward);
-        Constants.Pneumatics.clawTilt.set(DoubleSolenoid.Value.kReverse);
         
 
     }
     private boolean toggle = false;
     @Override
     public void execute() {
+        if (DriverStation.isAutonomousEnabled()) return;
+        if (!toggle) {
+            Constants.Pneumatics.clawClamp.set(DoubleSolenoid.Value.kForward);
+            Constants.Pneumatics.clawTilt.set(DoubleSolenoid.Value.kReverse);
+            toggle = true;
+        }
         if (joystick.getRawButtonPressed(5) ) {
             Constants.Pneumatics.clawClamp.toggle();
         } else if (joystick.getRawButtonPressed(3)) {
