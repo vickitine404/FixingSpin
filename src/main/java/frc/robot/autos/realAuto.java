@@ -23,7 +23,7 @@ public class realAuto extends CommandBase {
         this.swerve = s_Swerve;
         this.pneumatics = s_Pneumatics;
         this.grippers = s_Grippers;
-        addRequirements();
+        addRequirements(s_Swerve);
     }
 
     private boolean run = true;
@@ -48,21 +48,27 @@ public class realAuto extends CommandBase {
             arm.setMotors(0);
             Thread.sleep(100L);
 
+            elevator.setMotors(-0.75);
+            Thread.sleep(300L);
+            elevator.setMotors(0);
+            Thread.sleep(100L);
+
             grippers.setMotors(0.4);
-            Thread.sleep(1000L);
+            Thread.sleep(2000L);
             Constants.Pneumatics.clawClamp.set(DoubleSolenoid.Value.kReverse);
             grippers.setMotors(0);
             Thread.sleep(100L);
 
-            elevator.setMotors(0.20);
+            //elevator.setMotors(0.20);
             arm.setMotors(-0.75);
             Thread.sleep(2000L);
             arm.setMotors(0);
-            elevator.setMotors(0);
+            //elevator.setMotors(0);
             Thread.sleep(100L);
 
-            
+            //Constants.Swerve.driveMotorID.Mod0.setMotors(70);            
             Thread.sleep(4000L);
+            
 
 
             //Constants.Pneumatics.clawTilt.toggle();

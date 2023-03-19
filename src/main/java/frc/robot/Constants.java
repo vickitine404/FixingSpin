@@ -31,6 +31,10 @@ public final class Constants {
 
     }
 
+    // public static final class Lock{
+        
+    // }
+
     public static final class Arm{
         public static final int armMotor = 22;
         
@@ -195,6 +199,7 @@ public final class Constants {
         }
         
         /* Constraint for the motion profilied robot angle controller */
+   
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
             new TrapezoidProfile.Constraints(
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);

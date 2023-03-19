@@ -48,6 +48,7 @@ public class RobotContainer {
     private final Pneumatics s_Pneumatics = new Pneumatics();
     private final Tank s_Tank = new Tank(new WPI_TalonFX(Constants.Tank.frontLeft), new WPI_TalonFX(Constants.Tank.frontRight), new WPI_TalonFX(Constants.Tank.backLeft), new WPI_TalonFX(Constants.Tank.backRight));
     private final LED s_LED = new LED();
+    private final Lock s_Lock = new Lock();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -78,6 +79,10 @@ public class RobotContainer {
         );
         s_LED.setDefaultCommand(
             new TeleopLED(s_LED, soloStick)
+        );
+        
+        s_Lock.setDefaultCommand(
+            new TeleopLock(s_Lock, rightStick)
         );
         
         // Configure the button bindings
